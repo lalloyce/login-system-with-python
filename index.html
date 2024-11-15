@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CredEx Solutions</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+<script type="text" src="style.css"></script>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">CredEx</span> Solutions</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('login')">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="home" class="page active">
+        <section id="showcase">
+            <div class="container">
+                <h1>Professional Credit Services</h1>
+                <p>Your trusted partner in financial growth and stability</p>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <div class="box">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Credit Services</h3>
+                    <p>Comprehensive credit solutions tailored to your needs</p>
+                </div>
+                <div class="box">
+                    <i class="fas fa-comments"></i>
+                    <h3>Consultancy</h3>
+                    <p>Expert financial advice to guide your decisions</p>
+                </div>
+                <div class="box">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Project Management</h3>
+                    <p>Efficient management of your financial projects</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="login" class="page">
+        <div class="container">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="showPage('register')">Register</a></p>
+            <p><a href="#" onclick="showPage('resetPassword')">Forgot password?</a></p>
+        </div>
+    </div>
+
+    <div id="register" class="page">
+        <div class="container">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <input type="text" id="registerName" placeholder="Name" required>
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" id="registerPassword" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="resetPassword" class="page">
+        <div class="container">
+            <h2>Reset Password</h2>
+            <form id="resetPasswordForm">
+                <input type="email" id="resetEmail" placeholder="Email" required>
+                <button type="submit">Reset Password</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="profile" class="page">
+        <div class="container">
+            <h2>User Profile</h2>
+            <img id="avatar" src="https://via.placeholder.com/150" alt="Avatar">
+            <form id="profileForm">
+                <input type="file" id="avatarUpload" accept="image/*">
+                <input type="text" id="profileName" placeholder="Name">
+                <input type="email" id="profileEmail" placeholder="Email">
+                <input type="password" id="profilePassword" placeholder="New Password">
+                <button type="submit">Update Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>CredEx Solutions, Copyright &copy; 2024</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            // Here you would typically send a request to your backend
+            console.log('Login attempt:', email, password);
+            // For demo purposes, we'll just redirect to the profile page
+            showPage('profile');
+        });
+
+        // Register form submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            // Here you would typically send a request to your backend
+            console.log('Register attempt:', name, email, password);
+            // For demo purposes, we'll just show an alert
+            alert('Registration successful! Please check your email for verification.');
+        });
+
+        // Reset password form submission
+        document.getElementById('resetPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('resetEmail').value;
+            // Here you would typically send a request to your backend
+            console.log('Reset password attempt:', email);
+            // For demo purposes, we'll just show an alert
+            alert('If an account exists for this email, you will receive password reset instructions.');
+        });
+
+        // Profile form submission
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('profileName').value;
+            const email = document.getElementById('profileEmail').value;
+            const password = document.getElementById('profilePassword').value;
+            // Here you would typically send a request to your backend
+            console.log('Profile update attempt:', name, email, password);
+            // For demo purposes, we'll just show an alert
+            alert('Profile updated successfully!');
+        });
+
+        // Avatar upload preview
+        document.getElementById('avatarUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('avatar').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
